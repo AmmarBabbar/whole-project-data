@@ -1,0 +1,72 @@
+CREATE TABLE student (
+    student_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50),
+    last_name VARCHAR2(50),
+    date_of_birth DATE,
+    gender VARCHAR2(10),
+    email VARCHAR2(100),
+    phone_number VARCHAR2(20),
+    address VARCHAR2(255)
+);
+/
+CREATE TABLE teacher (
+    teacher_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50),
+    last_name VARCHAR2(50),
+    date_of_birth DATE,
+    gender VARCHAR2(10),
+    email VARCHAR2(100),
+    phone_number VARCHAR2(20),
+    address VARCHAR2(255)
+);
+/
+CREATE TABLE university (
+    university_id NUMBER PRIMARY KEY,
+    university_name VARCHAR2(100) UNIQUE,
+    location VARCHAR2(100),
+    founding_date DATE,
+    website VARCHAR2(255)
+);
+/
+-- Create the vehicles table
+CREATE TABLE vehicles (
+    vehicle_id NUMBER PRIMARY KEY,
+    vehicle_number VARCHAR2(20) UNIQUE,
+    capacity NUMBER,
+    model VARCHAR2(50),
+    year_of_manufacture NUMBER,
+    status VARCHAR2(20) CHECK (status IN ('Active', 'Inactive'))
+);
+/
+-- Create the routes table
+CREATE TABLE routes (
+    route_id NUMBER PRIMARY KEY,
+    route_name VARCHAR2(100) UNIQUE,
+    start_location VARCHAR2(100),
+    end_location VARCHAR2(100)
+);
+/
+-- Create the schedules table
+CREATE TABLE schedules (
+    schedule_id NUMBER PRIMARY KEY,
+    route_id NUMBER REFERENCES routes(route_id),
+    vehicle_id NUMBER REFERENCES vehicles(vehicle_id),
+    departure_time TIMESTAMP,
+    arrival_time TIMESTAMP
+);
+/
+CREATE TABLE university_staff (
+    staff_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50),
+    last_name VARCHAR2(50),
+    date_of_birth DATE,
+    gender VARCHAR2(10),
+    email VARCHAR2(100),
+    phone_number VARCHAR2(20),
+    address VARCHAR2(255),
+    position VARCHAR2(50),
+    department VARCHAR2(50),
+    hire_date DATE,
+    salary NUMBER
+);
+/
